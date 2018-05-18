@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robot Modeling and Control</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <style>
+    .small_table{
+        width:10%;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .twod_table{
+        width:5%;
+        min-width: 42px;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .center_content{
+        text-align: center;
+    }
+    .center_self{
+        margin: 0 auto;
+    }
+    .margin_bot{
+        margin-bottom: 40px;
+    }
+    .rot{
+        width: 50%;
+    }
+    .table_entries{
+        width:100px;
+        text-align: center;
+    }
+    .circular_border{
+        border:solid;
+        border-width: 2px;
+        border-color:#777777;
+        border-radius: 10px;
+    }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+    var counter = 0;
+    $( window ).on( "load", function() {
+        counter = 0;
+    });
+
+    $(document).ready(function() {
+        $('#button').click( function() {
+            var r11 = $("#r11").val();
+            var r12 = $("#r12").val();
+            var r13 = $("#r13").val();
+            var r14 = $("#r14").val();
+            var r21 = $("#r21").val();
+            var r22 = $("#r22").val();
+            var r23 = $("#r23").val();
+            var r24 = $("#r24").val();
+            var r31 = $("#r31").val();
+            var r32 = $("#r32").val();
+            var r33 = $("#r33").val();
+            var r34 = $("#r34").val();
+            var result = false;
+
+            var cal = (r11 == "0") && (r12 == "-90") && (r13 == "0") && (r14 == "theta4" || r14 == "theta1") && (r21 == "0") && (r22 == "90") && (r23 == "0") && (r24 == "theta5" || r24 == "theta2") && (r31 == "0") && (r32 == "0") && (r33 == "d6" || r33 == "d3") && (r34 == "theta6" || r34 == "theta3") || r34 == "-123"; 
+            if(cal){
+                result = true;
+            }
+            if(result == true){
+                alert(
+                    "You are correct!"
+                );
+            }else{
+                alert(
+                    "Please try again!"
+                );
+            }
+            result = false;
+            return false;
+        } );
+    } );
+    </script>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Robot Modeling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/rot_matrices.html">Rotation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/translation.html">Translation Matrices</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/DH_1.html">DH Parameters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/inverse_1.html">Inverse Kinematics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">DH Parameters</h1>
+          <div class="list-group">
+            <a href="/DH_1.html" class="list-group-item">DH Parameters</a>
+            <a href="/DH_2.html" class="list-group-item active">Example DH Tables</a>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 margin_bot">
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Denavit–Hartenberg Example</h3>
+              <h4></h4>
+              <p class="card-text">Now it's your turn to try filling your own table!</p>
+              <p class="card-text">Please enter the values as "theta1" for &Theta;1, "alpha2" for &alpha;2, "d1" for d1, and enter the angles in degrees such as "180".</p>
+
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="90%" src="img/arm_3.PNG" alt="" style="margin-top:30px;">
+                </div>
+                
+                <div class="center_content center_self margin_bot" style="display:none;">
+                    <img class="img-fluid" width="90%" src="img/DH_table.PNG" alt="" style="margin-top:30px;">
+                </div>
+                <table id="entries" class="table table-striped table-dark small_table center_content center_self margin_bot">
+                    <thead>
+                      <tr>
+                        <th scope="col">Link</th>
+                        <th scope="col">a</th>
+                        <th scope="col">&alpha;</th>
+                        <th scope="col">d</th>
+                        <th scope="col">&Theta;</th>
+                      </tr>
+                    </thead>
+                  <tbody>
+                      <tr>
+                          <td>4</td>
+                          <td><input class="table_entries" type="text" id="r11" name="r11" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r12" name="r12" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r13" name="r13" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r14" name="r14" value="0"></td>
+                      </tr>
+                      <tr>
+                          <td>5</td>
+                          <td><input class="table_entries" type="text" id="r21" name="r21" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r22" name="r22" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r23" name="r23" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r24" name="r24" value="0"></td>
+                      </tr>
+                      <tr>
+                          <td>6</td>
+                          <td><input class="table_entries" type="text" id="r31" name="r31" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r32" name="r32" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r33" name="r33" value="0"></td>
+                          <td><input class="table_entries" type="text" id="r34" name="r34" value="0"></td>
+                      </tr>
+                  </tbody>
+                </table>
+                <br>
+           
+            </div>
+            <button id="button" class="btn btn-success">Give it a try!</button>
+          </div>
+          <!-- /.card -->
+        <!--
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Introduction
+            </div>
+            <div class="card-body">
+              <p>We will be mostly concerned with fundamentals of robotics, including kinematics, dynamics and motion planning as well as have a solid understanding of how linear Algebra works. </p>
+              <p>For our case we will involved in understanding how a robot arm works, we call these kinds of arms, manipulators.</p>
+              <hr>
+              <p>This small interactive website's purpose is to show that these calculations are not as troublesome and complexe as they might appear and how knowing a couple basic knowledges and conventions can enable us to create very complex models that can and are used in the real world.
+              <p>Our primary concern will be the mathematical modeling of the manipulator and understand the complications that accompanies with each degree of freedom added.</p>
+              <hr>
+              -->
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+              <!--
+            </div>
+          </div>
+          -->
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Tony Grift & Volga Karakus, 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

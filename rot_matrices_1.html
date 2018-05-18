@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robot Modeling and Control</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <style>
+    .small_table{
+        width:10%;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .twod_table{
+        min-width: 42px;
+        width:5%;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .center_content{
+        text-align: center;
+    }
+    .center_self{
+        margin: 0 auto;
+    }
+    .margin_bot{
+        margin-bottom: 40px;
+    }
+    .rot{
+        width: 50%;
+    }
+    .circular_border{
+        border:solid;
+        border-width: 2px;
+        border-color:#777777;
+        border-radius: 10px;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Robot Modeling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Introduction
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/rot_matrices.html">Rotation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/translation.html">Translation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/DH_1.html">DH Parameters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/inverse_1.html">Inverse Kinematics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">Rotation Matrices</h1>
+          <div class="list-group">
+            <a href="/rot_matrices.html" class="list-group-item">Linear Algebra</a>
+            <a href="/rot_matrices_1.html" class="list-group-item active">Representing Rotations</a>
+            <a href="/rot_matrices_2.html" class="list-group-item">Training examples</a>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 margin_bot">
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Representing Rotations</h3>
+              <h4></h4>
+              <p class="card-text">In linear algebra, a rotation matrix is a matrix that is used to perform a rotation in Euclidean space. For example, using the convention below, the matrix.</p>
+            <div class="margin-bottom">
+                <table class="table table-striped table-dark small_table center_content center_self margin_bot rot">
+                    <tbody>
+                        <tr>
+                        <!--<th scope="row">Cos(&Theta;)</th>-->
+                        <td>Cos(&Theta;)</td>
+                        <td>-Sin(&Theta;)</td>
+                        </tr>
+                        <tr>
+                        <td>Sin(&Theta;)</td>
+                        <td>Cos(&Theta;)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="card-text margin-bottom">This matrix rotates points in the xy-plane counterclockwise through an angle θ about the origin of the Cartesian coordinate system. To perform the rotation using a rotation matrix R, the position of each point must be represented by a column vector v, containing the coordinates of the point. A rotated vector is obtained by using the matrix multiplication Rv.</p>
+            <p class="card-text margin-bottom">As previously seen, in the example:</p>
+              <div class="margin-bottom">
+                <table class="table table-striped table-dark small_table center_content center_self margin_bot twod_table" style="display: inline-block; margin-left: 5px; ">
+                    <tbody>
+                        <tr>
+                        <td>X'</td>
+                        </tr>
+                        <tr>
+                        <td>Y'</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-dark small_table center_content center_self margin_bot rot" style="float:left; margin-left:100px">
+                    <tbody>
+                        <tr>
+                        <!--<th scope="row">Cos(&Theta;)</th>-->
+                        <td>Cos(&Theta;)</td>
+                        <td>-Sin(&Theta;)</td>
+                        </tr>
+                        <tr>
+                        <td>Sin(&Theta;)</td>
+                        <td>Cos(&Theta;)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-dark small_table center_content center_self margin_bot twod_table" style="float:left; margin-left: 5px; ">
+                    <tbody>
+                        <tr>
+                        <td>X</td>
+                        </tr>
+                        <tr>
+                        <td>Y</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="float:left;">
+                    <img class="img-fluid" width="40px" src="img/equal.png" alt="" style="margin-top:30px;;">
+                </div>
+            </div>
+            <p class="card-text margin-bottom">This operation the same as writing the following formulas :</p>
+            <div class="center_content center_self">
+                <img class="img-fluid " width="200px" src="img/orientation_1.PNG" alt="" style="margin-top:30px;;">
+            </div>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Basic 3D Rotations
+            </div>
+            <div class="card-body">
+              <p>A basic rotation (also called elemental rotation) is a rotation about one of the axes of a Coordinate system. The following three basic rotation matrices rotate vectors by an angle θ about the x, y, or z axis, in three dimensions, using the <a href="https://en.wikipedia.org/wiki/Right-hand_rule" target="_blank">right-hand-rule</a> which codifies their alternating signs. It's very important for you to familiarize yourself with the right-hand-rule because these matrices can be taken as clockwise or counter-clockwise and it is important to have a commune convention when working with others.</p>
+                <div class="center_content center_self">
+                    <img class="img-fluid " width="200px" src="img/basic_rots.svg" alt="" style="margin-top:30px;;">
+                </div>
+              <hr>
+              <p>The following example shows a rotation of θ = 90 done around the Z-axis.</p>
+            <div class="center_content center_self margin_bot">
+                <img class="img-fluid " width="80%" src="img/basic_rot_z.svg" alt="" style="margin-top:30px;;">
+            </div>
+            <p>As expected, a vector facing the X-axis, when rotated around the Z-axis by 90 degrees, is now facing the Y-axis.
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+            </div>
+          </div>
+          <!-- /.card -->
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                Multiple Rotations
+            </div>
+            <div class="card-body">
+              <p>When we are required to use multiple elementary rotations, we need to find a way to combine these rotations in a simpler format. Again using matrices for this purpose really simplifies things enormously.</p>
+              <p>For example, let's say we need to rotate a reference frame by the Y axis followed by the Z axis, as shown in the below picture.</p>
+                <div class="center_content center_self">
+                    <img class="img-fluid circular_border" width="80%" src="img/rot_add.PNG" alt="" style="margin-top:30px;">
+                </div>
+              <p>In order to achieve this multiple rotation matrix, we simply need to figure out by how much we need to rotate each axis and simply multiple them.</p>
+            <div class="center_content center_self margin_bot">
+                <img class="img-fluid circular_border" width="80%" src="img/rot_add_1.PNG" alt="" style="margin-top:30px;;">
+            </div>
+            <p>Now we have a combination of elementary rotations which is in a very compact format. And all we need to do to go from reference frame A to B is to calculate B = R*A</p>
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+              <hr>
+            <p>Now it's your turn to practice! Please go to the next page in order to find some practice examples.</p>
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+            </div>
+          </div>
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Tony Grift & Volga Karakus, 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
+

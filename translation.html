@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robot Modeling and Control</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <style>
+    .small_table{
+        width:10%;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .twod_table{
+        width:5%;
+        min-width: 42px;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .center_content{
+        text-align: center;
+    }
+    .center_self{
+        margin: 0 auto;
+    }
+    .margin_bot{
+        margin-bottom: 40px;
+    }
+    .rot{
+        width: 50%;
+    }
+    .table_entries{
+        width:100px;
+        text-align: center;
+    }
+  .circular_border{
+        border:solid;
+        border-width: 2px;
+        border-color:#777777;
+        border-radius: 10px;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Robot Modeling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/rot_matrices.html">Rotation Matrices</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/translation.html">Translation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/DH_1.html">DH Parameters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/inverse_1.html">Inverse Kinematics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">Translation Matrix</h1>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 margin_bot">
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Translation Matrices</h3>
+              <h4></h4>
+              <p class="card-text">Nothing really easier than a translation matrix.</p>
+              <p class="card-text">All you really have to do is keep track of which axis you would like to translate.</p>
+
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid" width="90%" src="img/translation_mat.png" alt="" style="margin-top:30px;">
+                </div>
+                <br>
+              <p class="card-text">For our case, it is important to have only one axis translation at the time. Meaning that if we translate <b>x</b> by <b>2</b> units, then <b>dx = 2</b> and <b>dy = dz = 0</b>. This is important because we need to keep a good track of which rotations and translations we do as we need to gradualy move towards the next link. Messing with the order will <b>definitely</b> give you the wrong answers and thus make your manipulator potentially move to obstacles or even worse force itself in positions impossible.
+           
+            </div>
+          </div>
+
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Elementary Rotations and Translations
+            </div>
+            <div class="card-body">
+              <p>Let's go through all the elementary rotations and translations seen so far one more time as it is most crucial to have a clear understanding of these matrices.</p>
+                <div class="center_content center_self">
+                    <img class="img-fluid circular_border" width="80%" src="img/matrices.PNG" alt="" style="margin-top:30px;;">
+                </div>
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+            </div>
+          </div>
+          <!-- /.card -->
+        <!--
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Introduction
+            </div>
+            <div class="card-body">
+              <p>We will be mostly concerned with fundamentals of robotics, including kinematics, dynamics and motion planning as well as have a solid understanding of how linear Algebra works. </p>
+              <p>For our case we will involved in understanding how a robot arm works, we call these kinds of arms, manipulators.</p>
+              <hr>
+              <p>This small interactive website's purpose is to show that these calculations are not as troublesome and complexe as they might appear and how knowing a couple basic knowledges and conventions can enable us to create very complex models that can and are used in the real world.
+              <p>Our primary concern will be the mathematical modeling of the manipulator and understand the complications that accompanies with each degree of freedom added.</p>
+              <hr>
+              -->
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+              <!--
+            </div>
+          </div>
+          -->
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Tony Grift & Volga Karakus, 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

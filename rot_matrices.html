@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robot Modeling and Control</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <style>
+    .small_table{
+        width:10%;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .twod_table{
+        width:5%;
+        min-width: 42px;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .center_content{
+        text-align: center;
+    }
+    .center_self{
+        margin: 0 auto;
+    }
+    .margin_bot{
+        margin-bottom: 40px;
+    }
+    .rot{
+        width: 50%;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Robot Modeling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Introduction
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/rot_matrices.html">Rotation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/translation.html">Translation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/DH_1.html">DH Parameters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/inverse_1.html">Inverse Kinematics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">Rotation Matrices</h1>
+          <div class="list-group">
+            <a href="/rot_matrices.html" class="list-group-item active">Linear Algebra</a>
+            <a href="/rot_matrices_1.html" class="list-group-item">Representing Rotations</a>
+            <a href="/rot_matrices_2.html" class="list-group-item">Training examples</a>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 margin_bot">
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Linear Algebra</h3>
+              <h4></h4>
+              <p class="card-text">In physical situations, matrices arise when you want to work with and describe real world (multi-dimensional) objects. While there are other ways, using a matrix is often very convenient.</p>
+               <p class="card-text">Let's say you're programming our manipulator amd you want to tell the robot that there is an obstacle five meters ahead, and two meters to the right. Now your robot then turns in place by <b>'&Theta;'</b> degrees to the left. So, how do you calculate the location relative to the robot after the turn afterall we need to keep track of these obstacles. </p>
+               <p class="card-text">If we were to describe the original coordinates of the obstacle with the a 2D matrix, that would be :</p>
+            <table class="table table-striped table-dark small_table center_content center_self margin_bot">
+                <tbody>
+                    <tr>
+                    <th scope="row">X</th>
+                    <td>5</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">Y</th>
+                    <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="card-text">This is where rotation matrices are powerful because of it's neatly written form especially with increasing dimentions such as our 3D world.</p>
+            <div class="margin-bottom">
+                <table class="table table-striped table-dark small_table center_content center_self margin_bot twod_table" style="display: inline-block; margin-left: 5px; ">
+                    <tbody>
+                        <tr>
+                        <td>X'</td>
+                        </tr>
+                        <tr>
+                        <td>Y'</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-dark small_table center_content center_self margin_bot rot" style="float:left; margin-left:100px">
+                    <tbody>
+                        <tr>
+                        <!--<th scope="row">Cos(&Theta;)</th>-->
+                        <td>Cos(&Theta;)</td>
+                        <td>-Sin(&Theta;)</td>
+                        </tr>
+                        <tr>
+                        <td>Sin(&Theta;)</td>
+                        <td>Cos(&Theta;)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-dark small_table center_content center_self margin_bot twod_table" style="float:left; margin-left: 5px; ">
+                    <tbody>
+                        <tr>
+                        <td>5</td>
+                        </tr>
+                        <tr>
+                        <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="float:left;">
+                    <img class="img-fluid" width="40px" src="img/equal.png" alt="" style="margin-top:30px;;">
+                </div>
+            </div>
+
+                <p class="card-text margin-bottom">With <b>X'</b> and <b>Y'</b> being the coordinates of the obstacle according to the manipulator's reference.</p>
+                <p class="card-text margin-bottom"> This is a very simple example, but when we start writing out the equations that we will be later on using, you can see that as we scale dimensions and keep on rotating thus increasing the complexity of our operations, using matrices becomes more an more useful.</p>
+                <p class="card-text">One of the most useful fact about matrices is the fact that if we keep on multiplying them as our operations gets more and more complex, we can simply use the very last product in order to determine the solution to the chain of operations. We will be talking more about this characteristic later as we move towards the Denavit-Hartenberg conventions.</p>
+            </div>
+          </div>
+          <!-- /.card -->
+        <!--
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Introduction
+            </div>
+            <div class="card-body">
+              <p>We will be mostly concerned with fundamentals of robotics, including kinematics, dynamics and motion planning as well as have a solid understanding of how linear Algebra works. </p>
+              <p>For our case we will involved in understanding how a robot arm works, we call these kinds of arms, manipulators.</p>
+              <hr>
+              <p>This small interactive website's purpose is to show that these calculations are not as troublesome and complexe as they might appear and how knowing a couple basic knowledges and conventions can enable us to create very complex models that can and are used in the real world.
+              <p>Our primary concern will be the mathematical modeling of the manipulator and understand the complications that accompanies with each degree of freedom added.</p>
+              <hr>
+              -->
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+              <!--
+            </div>
+          </div>
+          -->
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Tony Grift & Volga Karakus, 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

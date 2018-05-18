@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robot Modeling and Control</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <style>
+    .small_table{
+        width:10%;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .twod_table{
+        width:5%;
+        min-width: 42px;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .center_content{
+        text-align: center;
+    }
+    .center_self{
+        margin: 0 auto;
+    }
+    .margin_bot{
+        margin-bottom: 40px;
+    }
+    .rot{
+        width: 50%;
+    }
+
+    .circular_border{
+        border:solid;
+        border-width: 2px;
+        border-color:#777777;
+        border-radius: 10px;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Robot Modeling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/rot_matrices.html">Rotation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/translation.html">Translation Matrices</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/DH_1.html">DH Parameters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/inverse_1.html">Inverse Kinematics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">DH Parameters</h1>
+          <div class="list-group">
+            <a href="/DH_1.html" class="list-group-item active">DH Parameters</a>
+            <a href="/DH_2.html" class="list-group-item">Example DH Tables</a>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 margin_bot">
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Denavit–Hartenberg Parameters</h3>
+              <h4></h4>
+              <p class="card-text"> The Denavit–Hartenberg parameters (also called DH parameters) are the four parameters associated with a particular convention for attaching reference frames to the links of a spatial kinematic chain, or robot manipulator.</p>
+               <p class="card-text">In this convention, coordinate frames are attached to the joints between two links such that one transformation is associated with the joint, [Z], and the second is associated with the link [X]. The coordinate transformations along a serial robot consisting of n links form the kinematics equations of the robot.</p>
+               <p class="card-text">(In shorter words, you can create a transformation matrix of any kind by using just multiple rotations in the Z and X axis.)</p>
+
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid" width="90%" src="img/DH_convention.svg" alt="" style="margin-top:30px;">
+                </div>
+                <p>Make sure to keep these rotations in mind</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid" width="40%" src="img/basic_rot_x_1.png" alt="" style="margin-top:30px; display: inline-block;">
+                    <img class="img-fluid" width="40%" src="img/basic_rot_z_1.png" alt="" style="margin-top:30px; float:left;">
+                </div>
+                <br>
+                <div>
+                    <h4 class="card-text margin-bottom">So what are these 4 values we're talking about anyway ?</h4>
+                </div>
+                <br>
+                <p class="card-text margin-bottom"><b>d</b> : offset along previous <b>z</b> to the common normal.</p>
+                <p class="card-text margin-bottom"><b>&Theta;</b> : angle about previous <b>z</b>, from old <b>x</b> to new <b>x</b>.</p>
+                <p class="card-text margin-bottom"><b>a</b> : length of the common normal (do not confuse with <b>'&alpha;'</b>). 
+                <br>Assuming a revolute joint, this is the radius about previous <b>z</b>.
+                <p class="card-text margin-bottom"><b>&alpha;</b> : angle about common normal, from old <b>z</b> axis to new <b>z</b> axis</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid " width="80%" src="img/class_dh_param.png" alt="" style="margin-top:30px;;">
+                </div>
+
+                <h4 class="margin_bot">Woah! What happened?</h4>
+                <p class="card-text margin-bottom">I know it seems like we added lots of things in one go but let's take a step back and really think about what we just did.</p>
+                <p class="card-text margin-bottom">Firstly, don't get confused by the fancy namings and the fancy notations. This stuff is nothing new.</p>
+                <p class="card-text margin-bottom">Half of the DH parameters are barely the specs of the mechanical structure of the manipulator... AKA <b>a</b> and <b>d</b> are merely the lengths that the joints are occupying and the length of the links. Once these are measured, they never change again.</p>
+                <p class="card-text margin-bottom">For the rest... Well it's not that easy anymore. Now we have to think about which rotations must be taken in order to go from one link to an other. Remember the <a href="/rot_matrices_2.html" target="_blank">previous page</a>'s training examples? Yes! You already did the most complicated part of DH parameters and you didn't even know it!</p>
+                <p class="card-text margin_bot">So again, let's think about how to rotate one link to the other using only X and Z axis rotations. And again, please don't forget the <a href="https://en.wikipedia.org/wiki/Right-hand_rule" target="_blank">right-hand-rule</a>, as it's most crucial here to keep consistent angles!</p>
+                <br>
+                <h4 class="margin_bot">Cool but what do we do with the <b>d</b> and <b>a</b> parameters?</h4>
+                <p class="card-text margin_bot">The purpose of these parameters is to understand how much to extend an axis in order to center the links so that our rotations aren't all done in one single point.</p>
+                <p class="card-text margin_bot">Now we need to be able to combines these rotations in the X and Z axis with their appropriate transformation matrices.</p>
+                <p class="card-text margin_bot">It is common to separate these displacement into the product of a pure translation along a line and a pure rotation about the line.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid" width="40%" src="img/t_r_z.svg" alt="" style="margin-top:30px; display: inline-block;">
+                    <img class="img-fluid" width="40%" src="img/t_r_x.svg" alt="" style="margin-top:30px; float:left;">
+                </div>
+                <p class="card-text margin_bot">Now we can finally combine everything in one Translation matrix. Make sure to always keep this order as it's important to make sure to translate and rotate once we have positioned ourselves correctly in the reference frames.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid " width="80%" src="img/f_translation.svg" alt="" style="margin-top:30px;;">
+                </div>
+                <br>
+                <small class="text-muted margin_bot">Please keep in mind that rn is actually &alpha;n for our case.</small>
+                <br>
+                <p class="card-text margin_bot">Finally, combining the following matrices:</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid" width="40%" src="img/t_matrices.svg" alt="" style="margin-top:30px; display: inline-block;">
+                    <img class="img-fluid" width="40%" src="img/t_m1.svg" alt="" style="margin-top:30px; float:left;">
+                </div>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid" width="40%" src="img/t_m2.svg" alt="" style="margin-top:30px; display: inline-block;">
+                    <img class="img-fluid" width="40%" src="img/t_m3.svg" alt="" style="margin-top:30px; float:left;">
+                </div>
+                <p class="card-text margin_bot">We get the Transformation matrix:</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid " width="80%" src="img/full.svg" alt="" style="margin-top:30px;;">
+                </div>
+                <h4 class="margin_bot">The bigger picture</h4>
+                <p class="card-text margin_bot">Now that we know perfect how to get from one link to one link and keep the reference frames correct, we need to be able to combine all these and formulate one last formula for the whole manipulator.</p>
+                <p class="card-text margin_bot">Well there are good news and bad news... All we really need to do is to calculate the translation matrix shown above for each of the links, from link 0 to 1, from link 1 to 2, from 2 to ... you get the point. And after this all we need to do is to multiply them together! The good news is that these are all steps that we know how to do at this point, but it can be tedious to do this process many times, and that's the bad news. There isn't really a way around this problem.</p>
+                <p>As you can see in the below picture, the main purpose of this convention is to find the forward kinematics, meaning that we find the location of the end-effector by understanding each angle and position of the joints and links.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid " width="80%" src="img/forward_kinematics.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <h4>Let's go through a couple examples together:</h4>
+                <br>
+                <p>Let's start simple with a pretty simple 2 Degrees of freedom manipulator as shown below.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="70%" src="img/arm_1.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>Now we need to create our DH table. We need to see which lengths matter for our case, and which angles the joints can move in.</p>
+                <p>As we can see, for this example, we ignore the offset between joints since we are only given a 2D representation. And have no information about the actual joint's displacements.</p>
+                <p>On the other hand we are given the lengths of the links which can be represented as <b>a1</b> and <b>a2</b>.</p>
+                <p>We also don't have any information about the <b>&alpha;</b> angles because of the same reasons.</p>
+                <p>And finally, we care about the angles <b>&Theta;1</b> and <b>&Theta;2</b> which is the desired angles.</p>
+                <p>Let's create the DH table according to these informations:</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="40%" src="img/arm_1_1.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>Now we need to follow the same steps as previously shown:</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid " width="80%" src="img/f_translation.svg" alt="" style="margin-top:30px;;">
+                </div>
+                <small class="text-muted margin_bot">Please keep in mind that rn is actually &alpha;n for our case.</small>
+                <p>Doing this for each joint transformation we get:</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="70%" src="img/arm_1_2.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>Finally computing the transformation matrix, first from joint 0 to 1, then from 0 to 2 combined:</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="70%" src="img/arm_1_3.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <hr>
+                <p>I hope the previous example made sense, because the following example is more complicated as we add more information to the DH table because of the 3D representation of the manipulator, thus having more information given to us.</p>
+                <hr>
+                <p>Take this following manipulator as example:</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="40%" src="img/arm_2.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>For this example, we can see that there is only one desired angle variable &Theta;1, but we can also observe that in order to go from joint 0 to 1, we need to translate the joint reference frame by a distance d1.</p>
+                <p>Now we're in the joint number 1's reference frame, if we wish to go from 1's reference to 2's reference frame, we need to again translate the frame by a distance d2 as shown, but we can also see that in order to achieve the 2nd joint's reference frame, we need to also rotate the X axis by -90 degrees.</p>
+                <p>Next, to go from joint 2 to end-effector 3, all we need to do is translate the reference frame by d3.</p>
+                <p>Cool! Now we have every information we need in order to create our DH table.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="40%" src="img/arm_2_1.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>Now comes the easy and yet tedious part of calculating the transformation matrix.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="70%" src="img/arm_2_2.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>I hope this made sense to you and feel free to practice a couple examples on your own in the next page!</p>
+                <!-- SCAN : page 84 and 85 examples -->
+            </div>
+          </div>
+          <!-- /.card -->
+        <!--
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Introduction
+            </div>
+            <div class="card-body">
+              <p>We will be mostly concerned with fundamentals of robotics, including kinematics, dynamics and motion planning as well as have a solid understanding of how linear Algebra works. </p>
+              <p>For our case we will involved in understanding how a robot arm works, we call these kinds of arms, manipulators.</p>
+              <hr>
+              <p>This small interactive website's purpose is to show that these calculations are not as troublesome and complexe as they might appear and how knowing a couple basic knowledges and conventions can enable us to create very complex models that can and are used in the real world.
+              <p>Our primary concern will be the mathematical modeling of the manipulator and understand the complications that accompanies with each degree of freedom added.</p>
+              <hr>
+              -->
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+              <!--
+            </div>
+          </div>
+          -->
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Tony Grift & Volga Karakus, 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

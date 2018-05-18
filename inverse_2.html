@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robot Modeling and Control</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <style>
+    .small_table{
+        width:10%;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .twod_table{
+        width:5%;
+        min-width: 42px;
+        border:solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: transparent;
+    }
+    .center_content{
+        text-align: center;
+    }
+    .center_self{
+        margin: 0 auto;
+    }
+    .margin_bot{
+        margin-bottom: 40px;
+    }
+    .rot{
+        width: 50%;
+    }
+    .circular_border{
+        border:solid;
+        border-width: 2px;
+        border-color:#777777;
+        border-radius: 10px;
+    }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Robot Modeling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/rot_matrices.html">Rotation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/translation.html">Translation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/DH_1.html">DH Parameters</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/inverse_1.html">Inverse Kinematics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">Inverse Kinematics</h1>
+          <div class="list-group">
+            <a href="/inverse_1.html" class="list-group-item ">Understanding the Concept</a>
+            <a href="/inverse_2.html" class="list-group-item active">Worked examples</a>
+          </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 margin_bot">
+
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Inverse Kinematics</h3>
+              <h4></h4>
+              <p class="card-text">Inverse kinematics is nothing more than geometry between the links and the joints. For this reason we need to remember some of the properties that facilitated our lives when dealing with complex geometry problems such as the law of cosines.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid " width="30%" src="img/law_cosines.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>Which can be used to cases such as this when it comes to our manipulators.</p>
+                <div class="center_content center_self">
+                    <img class="img-fluid circular_border" width="50%" src="img/cos_ex_1.PNG" alt="" style="margin-top:30px;;">
+                </div>
+              <hr>
+              <h4 class="margin_bot">Let's start...</h4>
+              <p class="card-title">We need to make sure to go step by step again like before when doing inverse kinematics, it is impossible to do otherwise anyways. We need to know each angle (after we decide on the conventions as talked previously) in order to determine the whole setup.</p>
+              <p class="card-title">Let's start with &Theta;2</p>
+                <div class="center_content center_self">
+                    <img class="img-fluid circular_border" width="50%" src="img/cos_ex_3.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>I really wish I could explain this thoroughly but I've come to realize that geometry is more of a perspective that you gain over the time as you do more and more of them, so in case this step is a little complex, I would really advise you to just to a couple geometry problems to remind yourself.</p>
+                <p>Next step, we need to find &theta;1, for this we need to think about two triangles</p>
+                <p>The first triangle is the one that takes in the origin of the manipulator and the end-effector's coordinates <b>x2</b> and <b>y2</b>.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="50%" src="img/cos_ex_4.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="50%" src="img/cos_ex_6.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>The second triangle is the one that has the origin of the manipulator yet again, but then follows the path of the first link and connects to the end-effector as shown below.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="50%" src="img/cos_ex_5.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="35%" src="img/cos_ex_7.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <p>Now we can see that if we were to differentiate the angles that we get from the two triangles, we can find the value of &theta;1.</p>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="50%" src="img/cos_ex_8.PNG" alt="" style="margin-top:30px;;">
+                </div>
+                <div class="center_content center_self margin_bot">
+                    <img class="img-fluid circular_border" width="50%" src="img/cos_ex_9.PNG" alt="" style="margin-top:30px;;">
+                </div>
+            <hr>
+            <p>This stuff gets a bit more messy as we add more degrees of freedom, but the main steps are the same and can be done eventho tedious. When this is the case, we tend to go thru matrices again for better visual and mental stability.</p>
+            <div class="center_content center_self margin_bot">
+                <img class="img-fluid circular_border" width="80%" src="img/ex_1.PNG" alt="" style="margin-top:30px;;">
+             </div>
+             <p>If we were to follow a 6 Degrees of freedom manipulator like the one showed below, we would end up having the following structure for the transformation matrix from the end-effector.</p>
+            <div class="center_content center_self margin_bot">
+                <img class="img-fluid circular_border" width="80%" src="img/ex_3.PNG" alt="" style="margin-top:30px;;">
+             </div>
+            <div class="center_content center_self margin_bot">
+                <img class="img-fluid circular_border" width="50%" src="img/ex_2.PNG" alt="" style="margin-top:30px;;">
+             </div>
+             <p>We get values such as</p>
+            <div class="center_content center_self margin_bot">
+                <img class="img-fluid circular_border" width="50%" src="img/ex_4.PNG" alt="" style="margin-top:30px;;">
+             </div>
+             
+            </div>
+          </div>
+          <!-- /.card -->
+        <!--
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Introduction
+            </div>
+            <div class="card-body">
+              <p>We will be mostly concerned with fundamentals of robotics, including kinematics, dynamics and motion planning as well as have a solid understanding of how linear Algebra works. </p>
+              <p>For our case we will involved in understanding how a robot arm works, we call these kinds of arms, manipulators.</p>
+              <hr>
+              <p>This small interactive website's purpose is to show that these calculations are not as troublesome and complexe as they might appear and how knowing a couple basic knowledges and conventions can enable us to create very complex models that can and are used in the real world.
+              <p>Our primary concern will be the mathematical modeling of the manipulator and understand the complications that accompanies with each degree of freedom added.</p>
+              <hr>
+              -->
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+              <!--
+            </div>
+          </div>
+          -->
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Tony Grift & Volga Karakus, 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robot Modeling and Control</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <style>
+    .circular_border{
+        border:solid;
+        border-width: 2px;
+        border-color:#777777;
+        border-radius: 10px;
+    }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">Robot Modeling</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/index.html">Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/rot_matrices.html">Rotation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/translation.html">Translation Matrices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/DH_1.html">DH Parameters</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/inverse_1.html">Inverse Kinematics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <h1 class="my-4">Introduction</h1>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+
+          <div class="card mt-4">
+            <img class="card-img-top img-fluid" src="img/intro_pic.png" alt="">
+            <div class="card-body">
+              <h3 class="card-title">Robot Modeling Introduction</h3>
+              <h4></h4>
+              <p class="card-text">This small course is heavily influenced by the book <b>'Robot Modeling and Control'</b> by Mark W. Song, Seth Hutchinson and M.Vidyasagar.</p>
+              <p class="card-text">The book can be found on <a href="https://www.amazon.com/Robot-Modeling-Control-Mark-Spong/dp/0471649902/ref=sr_1_1?ie=UTF8&qid=1526526339&sr=8-1&keywords=Robot+Modeling+and+Control" target="_blank">Amazon</a>.</p>
+              <span class="text-warning">&#9733; &#9733; &#9733; &#9734; &#9734;</span> $134
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Introduction
+            </div>
+            <div class="card-body">
+              <p>We will be mostly concerned with fundamentals of robotics, including kinematics, dynamics and motion planning as well as have a solid understanding of how linear Algebra works. </p>
+              <p>For our case we will involved in understanding how a robot arm works, we call these kinds of arms, manipulators.</p>
+              <hr>
+              <p>This small interactive website's purpose is to show that these calculations are not as troublesome and complexe as they might appear and how knowing a couple basic knowledges and conventions can enable us to create very complex models that can and are used in the real world.
+              <p>Our primary concern will be the mathematical modeling of the manipulator and understand the complications that accompanies with each degree of freedom added.</p>
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+            </div>
+          </div>
+          
+          <!-- /.card -->
+                      <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Graphical Representations
+            </div>
+            <div class="card-body">
+              <p>We're mostly going to represent parts of the manipulator with the following drawings.</p>
+              <p>Revolute joints are there to ONLY rotate, and prismatic joints can ONLY translate.</p>
+              <hr>
+
+                   <img class="img-fluid center_self center_content circular_border" width="80%" src="img/representations.PNG" alt="" style="margin-top:30px; margin-left:10%;">
+
+
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+            </div>
+            
+          </div>
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              How is a manipulator made?
+            </div>
+            <div class="card-body">
+              <p>There are a couple notions to learn before we can begin, just so the explanations that come later on makes more sense. </p>
+              <hr>
+                <div id="image_0" class="center_content center_self">
+                    <img class="img-fluid " width="40%" src="img/arm1.PNG" alt="" style="margin-top:30px; float:left;">
+                    <img class="img-fluid " width="40%" src="img/arm2.PNG" alt="" style="margin-top:30px; display: inline-block;">
+                </div>
+                <hr>
+                <div id="image_0" class="center_content center_self">
+                    <img class="img-fluid " width="40%" src="img/arm3.PNG" alt="" style="margin-top:30px; float:left;">
+                    <img class="img-fluid " width="50%" src="img/arm4.PNG" alt="" style="margin-top:30px; display: inline-block;">
+                </div>
+                <hr>
+                <p class="card-text">DOF stands for degrees of freedom.</p>
+                <div id="image_0" class="center_content center_self">
+                    <img class="img-fluid " width="45%" src="img/arm5.PNG" alt="" style="margin-top:30px; float:left;">
+                    <img class="img-fluid " width="45%" src="img/arm6.PNG" alt="" style="margin-top:30px; display: inline-block;">
+                </div>
+              <!-- <small class="text-muted">Posted by Anonymous on 3/1/17</small>-->
+
+              <!-- <a href="#" class="btn btn-success">Leave a Review</a>-->
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- /.col-lg-9 -->
+
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Tony Grift & Volga Karakus, 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>
